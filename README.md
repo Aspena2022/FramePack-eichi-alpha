@@ -12,6 +12,10 @@ v1.7.1がすっきりしていると思うのでそれを使っていました�
 <b>※開発コンセプト</b><br>
 なるべくシンプルに、すっきりまとめたいです。極力UI上の情報を減らします。また低VRAM/RAMのWindows 11環境に特化したいのでLoRAは使用しないことにします。
 
+画面の様子
+![Image](https://github.com/user-attachments/assets/8bc60839-70ca-4bb2-97f6-269e37e61616)
+![Image](https://github.com/user-attachments/assets/e5ade8b4-1b95-42a3-ab40-ff178683942c)
+
 
 <b>導入方法(windows向け)</b><br>
 1)まずは導入したいフォルダを作りましょう。例えばe:\FramePack<br>
@@ -45,10 +49,11 @@ HunyuanVideoのモデルは https://huggingface.co/hunyuanvideo-community/Hunyua
 FramepackのI2Vモデルは https://huggingface.co/lllyasviel/FramePackI2V_HY にあります。<br>
 それぞれを インストールフォルダの webui\hf_download\hub\models--lllyasviel--FramePackI2V_HY に置きます。<br>
 
-<b>※開発上のちょっとしたコツ</b><br>
+<b>※ちょっとしたコツ</b><br>
 eichiのバージョンの下げ方ですが、cloneするとv1.9.4になるので、そのあとで<br>
 git checkout d790b799986552ebf159d6a2a25fde52bb837472 とします。<br>
 これで v1.7.1 になります。この git checkout というコマンドはとても便利ですので活用しましょう。
+また本家FramePackのそれぞれのbatファイルは使わなくていいので、例えばNoUSE_update.bat、NoUSE_run.bat、NoUSE_environment.batなどとリネームするとか削除すればすっきりします。必要なのは start.bat とenvironment2.bat だけです。
 
 <b>※開発秘話の困り事</b><br>
 最初は単純にeichiをforkして作ろうとしたのですが、どうしてもv1.7.1をそのままコピーできなくて参りました。たぶんReleaseがv1.9.4のみになっているからだと思うんですが。最新版をforkして、v1.7.1に下げる作業が大変すぎるので、forkせずに新たにリポジトリを作ることにしました。
