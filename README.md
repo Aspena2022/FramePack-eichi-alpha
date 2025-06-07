@@ -46,7 +46,8 @@ FramepackのI2Vモデルは https://huggingface.co/lllyasviel/FramePackI2V_HY �
 それぞれを インストールフォルダの webui\hf_download\hub\models--lllyasviel--FramePackI2V_HY に置きます。<br>
 
 <b>※開発上のちょっとしたコツ</b><br>
-eichiのバージョンの下げ方ですが、cloneするとv1.9.4になるので、そのあとで git checkout d790b799986552ebf159d6a2a25fde52bb837472 とします。
+eichiのバージョンの下げ方ですが、cloneするとv1.9.4になるので、そのあとで<br>
+git checkout d790b799986552ebf159d6a2a25fde52bb837472 とします。<br>
 これで v1.7.1 になります。この git checkout というコマンドはとても便利ですので活用しましょう。
 
 <b>※開発秘話の困り事</b><br>
