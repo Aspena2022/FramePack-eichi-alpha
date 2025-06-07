@@ -14,8 +14,7 @@ v1.7.1がすっきりしていると思うのでそれを使っていました�
 
 画面の様子
 ![Image](https://github.com/user-attachments/assets/8bc60839-70ca-4bb2-97f6-269e37e61616)
-![Image](https://github.com/user-attachments/assets/e5ade8b4-1b95-42a3-ab40-ff178683942c)
-
+![Image](https://github.com/user-attachments/assets/e1a34b06-d1e5-4f14-90bd-cf101bb2f69f)
 
 <b>導入方法(windows向け)</b><br>
 1)まずは導入したいフォルダを作りましょう。例えばe:\FramePack<br>
