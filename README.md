@@ -2,6 +2,8 @@
 
 一言でいうと
 FramePack-eichi v1.7.1をベースにした(若干の)改造版です
+大元はこれです
+https://github.com/git-ai-code/FramePack-eichi/tree/d790b799986552ebf159d6a2a25fde52bb837472
 
 <b>※開発経緯</b><br>
 I2VツールのFramePackの派生系、eichiは性能が素晴らしいツールですが、最新のv1.9.4ではUIが整理されておらず、個人的には使いにくいと感じました。
