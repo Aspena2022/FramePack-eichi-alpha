@@ -19,12 +19,17 @@ os.environ['HF_HOME'] = os.path.abspath(os.path.realpath(os.path.join(os.path.di
 
 # LoRAサポートの確認
 has_lora_support = False
-try:
-    import lora_utils
-    has_lora_support = True
-    print("LoRAサポートが有効です")
-except ImportError:
-    print("LoRAサポートが無効です（lora_utilsモジュールがインストールされていません）")
+
+# 20250605 comment off
+#
+# try:
+#
+#    import lora_utils
+#    has_lora_support = True
+#    print("LoRAサポートが有効です")
+# except ImportError:
+#
+print("LoRAサポートが無効です（lora_utilsモジュールがインストールされていません）")
 
 # 設定モジュールをインポート（ローカルモジュール）
 import os.path
@@ -33,6 +38,8 @@ from eichi_utils.video_mode_settings import (
     get_copy_targets, get_max_keyframes_count, get_total_sections, generate_keyframe_guide_html,
     handle_mode_length_change, process_keyframe_change, MODE_TYPE_NORMAL, MODE_TYPE_LOOP
 )
+
+# print("debug test 1")
 
 # 設定管理モジュールをインポート
 from eichi_utils.settings_manager import (
@@ -44,6 +51,8 @@ from eichi_utils.settings_manager import (
     open_output_folder
 )
 
+# print("debug test 2")
+
 # プリセット管理モジュールをインポート
 from eichi_utils.preset_manager import (
     initialize_presets,
@@ -53,6 +62,8 @@ from eichi_utils.preset_manager import (
     delete_preset
 )
 
+# print("debug test 3")
+
 # キーフレーム処理モジュールをインポート
 from eichi_utils.keyframe_handler import (
     ui_to_code_index,
@@ -61,6 +72,8 @@ from eichi_utils.keyframe_handler import (
     unified_input_image_change_handler,
     print_keyframe_debug_info
 )
+
+# print("debug test 4")
 
 # 拡張キーフレーム処理モジュールをインポート
 from eichi_utils.keyframe_handler_extended import extended_mode_length_change_handler
@@ -73,6 +86,8 @@ import safetensors.torch as sf
 import numpy as np
 import argparse
 import math
+
+# print("debug test 5")
 
 from PIL import Image
 from diffusers import AutoencoderKLHunyuanVideo
@@ -681,10 +696,42 @@ def worker(input_image, prompt, n_prompt, seed, total_second_length, latent_wind
                 print(f'Setting transformer memory preservation to: {preserved_memory} GB')
                 move_model_to_device_with_memory_preservation(transformer, target_device=gpu, preserved_memory_gb=preserved_memory)
 
+
+            # 20250605 TeaCacheの値は 0.15で固定になっていた。
+            # rel_l1_thresh で値を変更することもできる。
+            # 0.15から0.25にしてもあまり影響しなかった。0.40なら高速化する。
+
+            print("[DEBUG] TeaCache thresh: 0.40")
+
             if use_teacache:
-                transformer_obj.initialize_teacache(enable_teacache=True, num_steps=steps)
+                # 20250605 fix
+                # transformer_obj.initialize_teacache(enable_teacache=True, num_steps=steps)
+                transformer_obj.initialize_teacache(enable_teacache=True, num_steps=steps, rel_l1_thresh=0.40)
             else:
                 transformer_obj.initialize_teacache(enable_teacache=False)
+
+            # 20250606 FP8最適化処理の追加テスト --------------------------------------
+            #
+            # 調べるとLoRA適用時に関係することで、しかもテンソルデータの .weight ファイル
+            # が必要。すぐにメモリを省略化できるようなものではないようだ コメントアウト
+            # 
+            # FramePack Eichiの readmeに、v1.9.3の説明として、
+            # >FP8最適化: LoRA未使用時のメモリ使用量を大幅削減（PyTorch 2.1以上が必要）
+            # と書いてあるのでLoRAオフのときの挙動かと思えば違った。「LoRA使用時」が正しい
+            #
+            # state_dict = transformer_obj.state_dict()
+            # TARGET_KEYS = ["transformer_blocks", "single_transformer_blocks"]
+            # EXCLUDE_KEYS = ["norm"]
+            # state_dict = lora_utils.optimize_state_dict_with_fp8_on_the_fly(
+            #    state_dict,
+            #    gpu,
+            #    TARGET_KEYS,
+            #    EXCLUDE_KEYS,
+            #    move_to_device=False
+            # )
+            # lora_utils.apply_fp8_monkey_patch(transformer_obj, state_dict, use_scaled_mm=True)
+            # print("[DEBUG] FP8最適化処理を行いました")
+            # -------------------------------------------------------------------------
 
             def callback(d):
                 preview = d['denoised']
@@ -1084,7 +1131,7 @@ quick_prompts = [[x] for x in quick_prompts]
 css = get_app_css()
 block = gr.Blocks(css=css).queue()
 with block:
-    gr.HTML('<h1>FramePack<span class="title-suffix">-eichi</span></h1>')
+    gr.HTML('<h1>FramePack-Eichi alpha</h1>')
 
     # デバッグ情報の表示
     # print_keyframe_debug_info()
@@ -1092,14 +1139,19 @@ with block:
     # 一番上の行に「生成モード、セクションフレームサイズ、オールパディング、動画長」を配置
     with gr.Row():
         with gr.Column(scale=1):
-            mode_radio = gr.Radio(choices=[MODE_TYPE_NORMAL, MODE_TYPE_LOOP], value=MODE_TYPE_NORMAL, label="生成モード", info="通常：一般的な生成 / ループ：ループ動画用")
+            mode_radio = gr.Radio(
+                choices=[MODE_TYPE_NORMAL, MODE_TYPE_LOOP],
+                value=MODE_TYPE_NORMAL,
+                label="生成モード",
+                info="通常：一般的な生成 / ループ：ループ動画用"
+            )
         with gr.Column(scale=1):
-            # フレームサイズ切替用のUIコントロール（名前を「セクションフレームサイズ」に変更）
+            # フレームサイズ切替用のUIコントロール
             frame_size_radio = gr.Radio(
-                choices=["1秒 (33フレーム)", "0.5秒 (17フレーム)"], 
-                value="1秒 (33フレーム)", 
-                label="セクションフレームサイズ", 
-                info="1秒 = 高品質・通常速度 / 0.5秒 = よりなめらかな動き（実験的機能）"
+                choices=["1秒 (33 frame)", "0.5秒 (17 frame)"], 
+                value="1秒 (33 frame)", 
+                label="セクションごとのフレームサイズ", 
+                info="1秒 = 通常速度 / 0.5秒 = なめらか"
             )
         with gr.Column(scale=1):
             # オールパディング設定
@@ -1121,9 +1173,9 @@ with block:
     
     with gr.Row():
         with gr.Column():
-            # Final Frameの上に説明を追加
-            gr.Markdown("**Finalは最後の画像、Imageは最初の画像(最終キーフレーム画像といずれか必須)となります。**")
-            end_frame = gr.Image(sources='upload', type="numpy", label="Final Frame (Optional)", height=320)
+            # End Frameの説明
+            gr.Markdown("**End Imageは動画の最後　省略することも可能です　Start Imageは必須です**")
+            end_frame = gr.Image(sources='upload', type="numpy", label="End Image (Optional)", height=320)
             
             with gr.Row():
                 # クリック前のバリデーション関数を設定
@@ -1172,7 +1224,10 @@ with block:
             # 初期タイトルを計算
             initial_title = update_section_title("1秒 (33フレーム)", MODE_TYPE_NORMAL, "1秒")
             
-            with gr.Accordion("セクション設定", open=False, elem_classes="section-accordion"):
+            # 20250605 いらないのでセクション設定を消しておく
+            # with gr.Accordion("セクション設定", open=False, elem_classes="section-accordion"):
+            with gr.Accordion("セクション設定", open=False, elem_classes="section-accordion",visible=False):
+
                 with gr.Group(elem_classes="section-container"):
                     section_title = gr.Markdown(initial_title)
                     
@@ -1275,7 +1330,7 @@ with block:
                         outputs=[section_image_inputs[0], section_image_inputs[1]]
                     )
 
-            input_image = gr.Image(sources='upload', type="numpy", label="Image", height=320)
+            input_image = gr.Image(sources='upload', type="numpy", label="Start Image", height=320)
                 
             prompt = gr.Textbox(label="Prompt", value=get_default_startup_prompt(), lines=6)
 
@@ -1583,7 +1638,7 @@ with block:
 
             total_second_length = gr.Slider(label="Total Video Length (Seconds)", minimum=1, maximum=120, value=1, step=1)
             latent_window_size = gr.Slider(label="Latent Window Size", minimum=1, maximum=33, value=9, step=1, visible=False)  # Should not change
-            steps = gr.Slider(label="Steps", minimum=1, maximum=100, value=25, step=1, info='Changing this value is not recommended.')
+            steps = gr.Slider(label="Steps", minimum=1, maximum=100, value=16, step=1, info='Changing this value is not recommended.')
 
             cfg = gr.Slider(label="CFG Scale", minimum=1.0, maximum=32.0, value=1.0, step=0.01, visible=False)  # Should not change
             gs = gr.Slider(label="Distilled CFG Scale", minimum=1.0, maximum=32.0, value=10.0, step=0.01, info='Changing this value is not recommended.')
