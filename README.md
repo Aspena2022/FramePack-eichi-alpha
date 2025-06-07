@@ -1,8 +1,8 @@
 <b>Framepack-eichi-alpha の説明</b>　　　20250608
 
-一言でいうと
-FramePack-eichi v1.7.1をベースにした(若干の)改造版です
-大元はこれです
+一言でいうと<br>
+FramePack-eichi v1.7.1をベースにした(若干の)改造版です<br>
+大元はこれです<br>
 https://github.com/git-ai-code/FramePack-eichi/tree/d790b799986552ebf159d6a2a25fde52bb837472
 
 <b>※開発経緯</b><br>
