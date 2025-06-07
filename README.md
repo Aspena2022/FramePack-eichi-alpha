@@ -13,21 +13,21 @@ v1.7.1がすっきりしていると思うのでそれを使っていました�
 
 <b>導入方法(windows向け)</b><br>
 1)まずは導入したいフォルダを作りましょう。例えばe:\FramePack<br>
-2)pythonは導入済だとして、仮想環境を python -m venv venv で作ります。「venv」というフォルダが出来ましたね。<br>
-3)本家FramePackと、こちらのeichi alphaを githubからクローンします。<br>
-git clone https://github.com/lllyasviel/FramePack <br>
-git clone https://github.com/Aspena2022/FramePack-eichi-alpha <br>
-4)eichi alphaの中身を、本家のほうに上書きコピーしてください。webuiなども丸ごとコピーでいいです。<br>
-5)FramePackフォルダの、start.bat ファイルを右クリックしてメモ調で開きます。<br>
+2)ターミナル画面を開きます。エクスプローラで1のフォルダを右クリック、「その他のオプションを表示」、「ターミナルで開く」<br>
+3)pythonは導入済だとして、仮想環境を python -m venv venv で作ります。「venv」というフォルダが出来ましたね。<br>
+4)本家FramePackと、こちらのeichi alphaを githubからクローンします。<br>
+  git clone https://github.com/lllyasviel/FramePack <br>
+  git clone https://github.com/Aspena2022/FramePack-eichi-alpha <br>
+5)eichi alphaの中身を、本家のほうに上書きコピーしてください。webuiなども丸ごとコピーでいいです。<br>
+6)FramePackフォルダの、start.bat ファイルを右クリックしてメモ調で開きます。<br>
 　set HF_HUB_OFFLINE=1 の先頭に rem をつけてコメントアウトします。<br>
-6)FramePackフォルダでターミナル画面を開きます。フォルダを右クリックでできます。<br>
-　ネットに接続している状態で<br>
+7)ネットに接続している状態で FramePackフォルダのターミナルで<br>
   pip install -r requirements.txt を実行して、python実行環境を整えます。<br>
-7)アプリを開始するための start.bat をダブルクリックで実行します。ターミナル上で操作するなら ./start.bat です。<br>
+8)アプリを開始するための start.bat をダブルクリックで実行します。ターミナル上で操作するなら ./start.bat です。<br>
 　必要なファイルが自動的にダウンロードされます。HunyuanVideoのモデルが合計15GB程度、FramePackが34GB程度あります。<br>
-8)エラーがなければ、FramePack-eichi-aplhaが自動的に起動します。<br>
-9)もうモデルのダウンロードは不要ですので、先ほどの start.batを編集し、remを削除して元通りにします。<br>
-10)ネットに接続していないオフライン環境でも起動できれば環境構築完了です。<br>
+9)エラーがなければ、FramePack-eichi-aplhaが自動的に起動します。<br>
+10)もうモデルのダウンロードは不要ですので、先ほどの start.batを編集し、remを削除して元通りにします。<br>
+11)ネットに接続していないオフライン環境でも起動できれば環境構築完了です。<br>
 
 
 <b>トラブルシューティング</b><br>
