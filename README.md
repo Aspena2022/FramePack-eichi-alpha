@@ -23,8 +23,8 @@ git clone https://github.com/Aspena2022/FramePack-eichi-alpha <br>
 6)ネットに接続していることを確認してから、start.bat をダブルクリックで実行します。<br>
 　必要なファイルが自動的にダウンロードされます。HunyuanVideoのモデルが合計15GB程度、FramePackが34GB程度あります。<br>
 7)エラーがなければ、FramePack-eichi-aplhaが自動的に起動します。<br>
-8)もうモデルのダウンロードは不要ですので、先ほどの start.batを編集し、remを削除して元通りにします。
-9)ネットに接続しないオフライン環境でも起動できれば環境構築完了です。
+8)もうモデルのダウンロードは不要ですので、先ほどの start.batを編集し、remを削除して元通りにします。<br>
+9)ネットに接続しないオフライン環境でも起動できれば環境構築完了です。<br>
 
 
 <b>トラブルシューティング</b><br>
@@ -36,9 +36,9 @@ WindowsのStartメニュー、ファイル名を指定して実行で「SystemPr
 オフラインではエラーが出て起動できないときは、https://github.com/lllyasviel/FramePack/issues/298 を参考に、venvフォルダのファイルを書き換えれば解決します。
 
 また、モデルのダウンロードがうまくいかないときは、手動で用意することもできます。<br>
-HunyuanVideoのモデルは [https://huggingface.co/hunyuanvideo-community/HunyuanVideo] にあります。<br>
+HunyuanVideoのモデルは https://huggingface.co/hunyuanvideo-community/HunyuanVideo にあります。<br>
 それぞれを インストールフォルダの webui\hf_download\hub\models--hunyuanvideo-community--HunyuanVideo に置きます。<br>
-FramepackのI2Vモデルは [https://huggingface.co/lllyasviel/FramePackI2V_HY] にあります。<br>
+FramepackのI2Vモデルは https://huggingface.co/lllyasviel/FramePackI2V_HY にあります。<br>
 それぞれを インストールフォルダの webui\hf_download\hub\models--lllyasviel--FramePackI2V_HY に置きます。<br>
 
 
