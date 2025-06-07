@@ -28,7 +28,7 @@ def calculate_total_second_length(frames, fps=30):
     return frames / fps
 
 
-def calculate_sections_for_mode_and_size(mode_key, frame_size_setting="1秒 (33フレーム)"):
+def calculate_sections_for_mode_and_size(mode_key, frame_size_setting="1秒 (33 frame)"):
     """動画モードとフレームサイズ設定から必要なセクション数を計算"""
     # 動画モードからフレーム数を取得
     if mode_key not in VIDEO_MODE_SETTINGS:
@@ -37,7 +37,7 @@ def calculate_sections_for_mode_and_size(mode_key, frame_size_setting="1秒 (33�
     total_frames = VIDEO_MODE_SETTINGS[mode_key]["frames"]
     
     # フレームサイズ設定からlatent_window_sizeを判定
-    if frame_size_setting == "0.5秒 (17フレーム)":
+    if frame_size_setting == "0.5秒 (17 frame)":
         latent_window_size = 4.5  # 0.5秒モード
     else:
         latent_window_size = 9  # 1秒モードがデフォルト
