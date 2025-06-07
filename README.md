@@ -30,18 +30,19 @@ git clone https://github.com/Aspena2022/FramePack-eichi-alpha <br>
 <b>トラブルシューティング</b><br>
 
 ツールが起動できないときは、Windowsのページファイルが原因かもしれません。自動設定では小さく設定されているのでメモリ不足になるのです。<br>
-詳しくは https://github.com/lllyasviel/FramePack/issues/75 ですが、<br>
-WindowsのStartメニュー、ファイル名を指定して実行で「SystemPropertiesAdvanced」を立ち上げ、ページ設定を最小8000、最大51200にしてみてください。<br>
+詳しくは https://github.com/lllyasviel/FramePack/issues/75 ですが、WindowsのStartメニュー、ファイル名を指定して実行で「SystemPropertiesAdvanced」を立ち上げ、ページ設定を最小8000、最大51200にしてみてください。<br>
 
 オフラインではエラーが出て起動できないときは、https://github.com/lllyasviel/FramePack/issues/298 を参考に、venvフォルダのファイルを書き換えれば解決します。
 
-また、モデルのダウンロードがうまくいかないときは、手動で用意することもできます。<br>
+また、モデルの自動ダウンロードがうまくいかないときは、手動で用意することもできます。<br>
 HunyuanVideoのモデルは https://huggingface.co/hunyuanvideo-community/HunyuanVideo にあります。<br>
 それぞれを インストールフォルダの webui\hf_download\hub\models--hunyuanvideo-community--HunyuanVideo に置きます。<br>
 FramepackのI2Vモデルは https://huggingface.co/lllyasviel/FramePackI2V_HY にあります。<br>
 それぞれを インストールフォルダの webui\hf_download\hub\models--lllyasviel--FramePackI2V_HY に置きます。<br>
 
+<b>※開発上のちょっとしたコツ</b><br>
+eichiのバージョンの下げ方ですが、cloneするとv1.9.4になるので、そのあとで git checkout d790b799986552ebf159d6a2a25fde52bb837472 とします。
+これで v1.7.1 になります。この git checkout というコマンドはとても便利ですので活用しましょう。
 
-
-<b>※開発秘話-困り事</b><br>
+<b>※開発秘話の困り事</b><br>
 最初は単純にeichiをforkして作ろうとしたのですが、どうしてもv1.7.1をそのままコピーできなくて参りました。たぶんReleaseがv1.9.4のみになっているからだと思うんですが。最新版をforkして、v1.7.1に下げる作業が大変すぎるので、forkせずに新たにリポジトリを作ることにしました。
