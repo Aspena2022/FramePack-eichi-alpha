@@ -20,11 +20,14 @@ git clone https://github.com/Aspena2022/FramePack-eichi-alpha <br>
 4)eichi alphaの中身を、本家のほうに上書きコピーしてください。webuiなども丸ごとコピーでいいです。<br>
 5)FramePackフォルダの、start.bat ファイルを右クリックしてメモ調で開きます。<br>
 　set HF_HUB_OFFLINE=1 の先頭に rem をつけてコメントアウトします。<br>
-6)ネットに接続していることを確認してから、start.bat をダブルクリックで実行します。<br>
+6)FramePackフォルダでターミナル画面を開きます。フォルダを右クリックでできます。<br>
+　ネットに接続している状態で<br>
+  pip install -r requirements.txt を実行して、python実行環境を整えます。<br>
+7)アプリを開始するための start.bat をダブルクリックで実行します。ターミナル上で操作するなら ./start.bat です。<br>
 　必要なファイルが自動的にダウンロードされます。HunyuanVideoのモデルが合計15GB程度、FramePackが34GB程度あります。<br>
-7)エラーがなければ、FramePack-eichi-aplhaが自動的に起動します。<br>
-8)もうモデルのダウンロードは不要ですので、先ほどの start.batを編集し、remを削除して元通りにします。<br>
-9)ネットに接続しないオフライン環境でも起動できれば環境構築完了です。<br>
+8)エラーがなければ、FramePack-eichi-aplhaが自動的に起動します。<br>
+9)もうモデルのダウンロードは不要ですので、先ほどの start.batを編集し、remを削除して元通りにします。<br>
+10)ネットに接続していないオフライン環境でも起動できれば環境構築完了です。<br>
 
 
 <b>トラブルシューティング</b><br>
