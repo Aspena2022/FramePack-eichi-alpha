@@ -12,9 +12,10 @@ v1.7.1がすっきりしていると思うのでそれを使っていました�
 <b>※開発コンセプト</b><br>
 なるべくシンプルに、すっきりまとめたいです。極力UI上の情報を減らします。また低VRAM/RAMのWindows 11環境に特化したいのでLoRAは使用しないことにします。
 
-画面の様子
-![Image](https://github.com/user-attachments/assets/195ec4b3-8eca-461b-99b8-ae504b95bd0b)
-![Image](https://github.com/user-attachments/assets/e1a34b06-d1e5-4f14-90bd-cf101bb2f69f)
+<b>※画面の様子</b><br>
+![Image](https://github.com/user-attachments/assets/34fbc237-67f9-4fa1-81ae-92b6465dca60)
+![Image](https://github.com/user-attachments/assets/af5c8a0b-928f-4fa1-8d04-65da818c5ad3)
+
 
 <b>導入方法(windows向け)</b><br>
 1)まずは導入したいフォルダを作りましょう。例えばe:\FramePack<br>
