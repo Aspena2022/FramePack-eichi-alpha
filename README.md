@@ -50,7 +50,12 @@ HunyuanVideoのモデルは https://huggingface.co/hunyuanvideo-community/Hunyua
 FramepackのI2Vモデルは https://huggingface.co/lllyasviel/FramePackI2V_HY にあります。<br>
 それぞれを インストールフォルダの webui\hf_download\hub\models--lllyasviel--FramePackI2V_HY に置きます。<br>
 
-<b>※ちょっとしたコツ</b><br>
+xformersは高速化のためには必須です。<br>
+https://github.com/lllyasviel/FramePack/issues/138 <br>
+を参考に、Package Installer v3 を使ってインストールしておきましょう。<br>
+triton-windows も必要になるはずですが、手動でやるなら pip install triton-windows==3.2.0.post18 ですね。
+
+<b>※その他、ちょっとしたコツ</b><br>
 eichiのバージョンの下げ方ですが、cloneするとv1.9.4になるので、そのあとで<br>
 git checkout d790b799986552ebf159d6a2a25fde52bb837472 とします。<br>
 これで v1.7.1 になります。この git checkout というコマンドはとても便利ですので活用しましょう。
