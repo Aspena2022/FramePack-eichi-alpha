@@ -1169,7 +1169,7 @@ with block:
             )
         with gr.Column(scale=1):
             # 設定から動的に選択肢を生成
-            length_radio = gr.Radio(choices=get_video_modes(), value="1秒", label="動画長", info="キーフレーム画像のコピー範囲と動画の長さを設定")
+            length_radio = gr.Radio(choices=get_video_modes(), value="1秒", label="動画の長さ", info="１～４秒ではEndFrame影響度1.0、６～16秒ではEndFrame影響度0.5が目安です")
     
     with gr.Row():
         with gr.Column():
