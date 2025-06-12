@@ -1,4 +1,4 @@
-<b>Framepack-eichi-alpha の説明</b>　　　20250609
+<b>Framepack-eichi-alpha の説明</b>　　　20250613
 
 一言でいうと<br>
 FramePack-eichi v1.7.1をベースにした(若干の)改造版です<br>
