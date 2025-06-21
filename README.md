@@ -13,9 +13,7 @@ v1.7.1がすっきりしていると思うのでそれを使っていました�
 なるべくシンプルに、すっきりまとめたいです。極力UI上の情報を減らします。また低VRAM/RAMのWindows 11環境に特化したいのでLoRAは使用しないことにします。デフォルトのStepsを下げてTeaCacheを強く適用することで高速化しています。
 
 <b>※画面の様子</b><br>
-![Image](https://github.com/user-attachments/assets/2185627c-327f-4a38-8fe4-376c88cd24d5)
-
-![Image](https://github.com/user-attachments/assets/2eef7a5b-945b-41af-ab82-8535222c3474)
+![Image](https://github.com/user-attachments/assets/a824dbb0-0e6c-404c-8cbe-f9db939058d7)
 
 
 <b>導入方法(windows向け)</b><br>
