@@ -1,4 +1,4 @@
-<b>Framepack-eichi-alpha の説明</b>　　　20250613
+<b>Framepack-eichi-alpha の説明</b>　　　20250621
 
 一言でいうと<br>
 FramePack-eichi v1.7.1をベースにした(若干の)改造版です<br>
@@ -37,10 +37,17 @@ v1.7.1がすっきりしていると思うのでそれを使っていました�
 11)ネットに接続していないオフライン環境でも起動できれば環境構築完了です。<br>
 
 
+<b>Linux環境へのインストール方法</b><br>
+
+オリジナルのEichiと同じです。webuiフォルダの中身を元祖FramePackに上書きしてください。<br>
+
+
 <b>トラブルシューティング</b><br>
 
 ツールが起動できないときは、Windowsのページファイルが原因かもしれません。自動設定では小さく設定されているのでメモリ不足になるのです。<br>
 詳しくは https://github.com/lllyasviel/FramePack/issues/75 ですが、WindowsのStartメニュー、ファイル名を指定して実行で「SystemPropertiesAdvanced」を立ち上げ、ページ設定を最小8000、最大51200にしてみてください。<br>
+
+hf_download フォルダのパスが合わずにエラーが出たときは、webuiフォルダの下にそれを移動してください。<br>
 
 オフラインではエラーが出て起動できないときは、https://github.com/lllyasviel/FramePack/issues/298 を参考に、venvフォルダのファイルを書き換えれば解決します。
 
